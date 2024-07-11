@@ -1,6 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 * {
   margin: 0;
-  font-family: "Pretendard Variable";
+  font-family: "Inter";
   color: white;
   box-sizing: border-box;
 }
@@ -95,21 +96,6 @@ video {
   .card-container {
     padding: 14vh 4vw 28vh 4vw;
     gap: 2vw;
-  }
-}
-
-.card {
-  background-image: url("img/Ticket_Back.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 12vw;
-  height: 18vw;
-  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.05));
-}
-@media (max-width: 767px) {
-  .card {
-    width: 16vw;
-    height: 24vw;
   }
 }
 

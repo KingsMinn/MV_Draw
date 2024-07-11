@@ -1,0 +1,95 @@
+.card {
+  width: 12vw;
+  height: 18vw;
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.05));
+  border-radius: 32px;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.4em;
+  overflow: auto;
+}
+@media (max-width: 767px) {
+  .card {
+    width: 16vw;
+    height: 24vw;
+  }
+}
+.card:hover {
+  transform: scale(1.05);
+  filter: drop-shadow();
+}
+
+.card-message {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 240%;
+}
+.card-message .card-message-upper {
+  color: #777777;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+.card-message .card-message-below {
+  color: #484848;
+  font-size: 3.4em;
+  font-weight: 700;
+}
+
+.card-inside {
+  position: relative;
+  width: 100%;
+  flex-grow: 3;
+  border-radius: 24px;
+  background: #F5F5F5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card-inside .card-prize {
+  background: linear-gradient(273deg, #ff8477, #a1b2ff, #ff81a0, #c5b3ff, #ff7070);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 8em;
+  font-weight: 700;
+  background-size: 200% 100%;
+  animation: prizeGradient 16s ease infinite;
+}
+@keyframes prizeGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 51%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.card-inside .card-number {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+}
+.card-inside .card-number svg {
+  position: absolute;
+  fill: #FFF;
+  width: 124px;
+  height: 38px;
+}
+.card-inside .card-number p {
+  position: absolute;
+  margin-top: 4px;
+  color: #777777;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+}/*# sourceMappingURL=card-style.css.map */

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    //GSAP Settings
     gsap.registerPlugin(CustomEase);
     CustomEase.create("superEase", "M0,0 C0,0.796 0.301,1 1,1");
     CustomEase.create("superEaseInOut", "M0,0 C0.181,0 0.25,0.27 0.354,0.523 0.489,0.851 0.628,1 1,1 ");
@@ -59,24 +60,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { once: true });
     
     //Intro hover
-    document.querySelector('.start-button').addEventListener('mouseover', () => {
-        document.querySelector('.start-container').style.transform = `scale(1.05)`;
-    });
-    document.querySelector('.start-button').addEventListener('mouseout', () => {
-        document.querySelector('.start-container').style.transform = `scale(1)`;
-    });
-    document.querySelector('.start-button').addEventListener('mousedown', () => {
-        document.querySelector('.start-container').style.transform = `scale(0.9)`;
-    });
-    document.querySelector('.start-button').addEventListener('mouseup', () => {
-        document.querySelector('.start-container').style.transform = `scale(1.1)`;
-    });
+    const startButton = document.querySelector('.start-button');
+    const startContainer = document.querySelector('.start-container');
+    const cardContainer = document.querySelector('.card-container');
+
+    startButton.addEventListener('mouseover', () => { startContainer.style.transform = `scale(1.05)`; });
+    startButton.addEventListener('mouseout', () => { startContainer.style.transform = `scale(1)`; });
+    startButton.addEventListener('mousedown', () => { startContainer.style.transform = `scale(0.9)`; });
+    startButton.addEventListener('mouseup', () => { startContainer.style.transform = `scale(1.1)`; });
 
     
 
     function setPosition(item){
         let rect = item.getBoundingClientRect();
-        item.style.transform = `translateX(${(window.innerWidth / 2) - rect.left - (rect.width / 2)}px) translateY(${window.innerHeight - rect.top}px) scale(2)`;
+        let x = (window.innerWidth / 2) - rect.left - (rect.width / 2);
+        let y = window.innerHeight - rect.top;
+
+        item.style.transform = `translateX(${x}px) translateY(${y}px) scale(2)`;
         item.style.opacity = 0;
     };
 
@@ -92,8 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     //Reveal Animation
-    const startButton = document.querySelector('.start-button');
-    const cardContainer = document.querySelector('.card-container');
     startButton.addEventListener("click", () => {
         
         //Card Settings
@@ -101,7 +99,23 @@ document.addEventListener("DOMContentLoaded", () => {
             for(i = 0; i < numberOfCards.value; i++){
                 let win = '';
                 if (Math.random() < (probability.value / 100)){win = 'win';}
-                cardContainer.innerHTML += `<div class="card ${win}"></div>`;
+                cardContainer.innerHTML += `
+                    <div class="card ${win}">
+                        <div class="card-inside">
+                            <div class="card-number">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="125" height="38" viewBox="0 0 125 38" fill="none">
+                                    <path d="M119.776 22.5232C117.673 31.5873 109.599 38 100.294 38H24.7061C15.4013 38 7.32575 31.5831 5.22333 22.5191L0 -3.8147e-06C54.7264 -3.8147e-06 63.4328 -3.8147e-06 125 -3.8147e-06C123.429 6.77229 121.456 15.2773 119.776 22.5232Z" fill="white"/>
+                                </svg>
+                                <p>#5156</p>
+                            </div>
+                            <p class="card-prize">£50</p>
+                        </div>
+
+                        <div class="card-message">
+                            <span class="card-message-upper">You won</span>
+                            <span class="card-message-below">£50</span>
+                        </div>
+                    </div>`;
             }
             callback();
         }
