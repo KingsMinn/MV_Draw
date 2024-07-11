@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Drawing_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
+    <script src="Drawing_script.js"></script>
+</head>
+<body>
+    <div class="loading-container"><p style="position: absolute; bottom: 38vh; color: gray;">Click to Skip</p><div class="loading"></div></div>
+    <video class="bg-spacezoom" src="background/Spacezoom_Desktop_Intro.webm" muted></video>
+    <video class="bg-grid" src="background/GridOnly_Desktop.mp4" muted autoplay loop></video>
+    <div class="slider-container" style="z-index: 100; width: 300px; position: fixed; top: 20px; left: 20px;">
+        <p id="text-number-of-cards">Number of cards : </p>
+        <input type="range" min="5" max="100" value="10" name="Number of cards" id="number-of-cards" style="width: 100%;">
+        <p id="text-probability" style="margin-top: 10px;">Probability of winning : </p>
+        <input type="range" min="0" max="100" value="10" name="Probability for winning" id="probability" style="width: 100%;">
+    </div>
+    <div class="start-container">
+        <div class="start-button"></div>
+    </div>
+    <div class="card-container"></div>
+    <div class="button-container">
+        <button>Play again</button>
+        <a href="">Back to draw page</a>
+    </div>
+</body>
+</html>
+
