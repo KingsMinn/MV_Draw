@@ -162,12 +162,4 @@ video {
     font-size: 24px;
     margin-top: 12px;
   }
-}
-
-.win {
-  z-index: 2;
-}
-
-.win.complete:hover {
-  filter: drop-shadow(0 0 100px rgb(255, 174, 0));
 }/*# sourceMappingURL=Drawing_style.css.map */

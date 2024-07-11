@@ -90,32 +90,70 @@ document.addEventListener("DOMContentLoaded", () => {
         bgSpacezoom.play();
     });
 
-
+    let serialNumber = 5100;
     //Reveal Animation
     startButton.addEventListener("click", () => {
         
         //Card Settings
         function revealCards(callback){
             for(i = 0; i < numberOfCards.value; i++){
-                let win = '';
-                if (Math.random() < (probability.value / 100)){win = 'win';}
-                cardContainer.innerHTML += `
-                    <div class="card ${win}">
+                serialNumber++;
+                let win = false;
+                const setPrize = [5, 10, 20, 50];
+                let prize = 0;
+                const winProbability = Math.random();
+
+                if (Math.random() < (probability.value / 100)){
+                    win = true;
+
+                    if (winProbability < 0.2)
+                        {prize = setPrize[3];}
+                    else if (winProbability < 0.4)
+                        {prize = setPrize[2];}
+                    else if (winProbability < 0.7)
+                        {prize = setPrize[1];}
+                    else
+                        {prize = setPrize[0];}
+                }
+                
+                if (win){
+                    cardContainer.innerHTML += `
+                    <div class="card win">
                         <div class="card-inside">
                             <div class="card-number">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="125" height="38" viewBox="0 0 125 38" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="125" height="38" viewBox="0 0 125 60" fill="none">
                                     <path d="M119.776 22.5232C117.673 31.5873 109.599 38 100.294 38H24.7061C15.4013 38 7.32575 31.5831 5.22333 22.5191L0 -3.8147e-06C54.7264 -3.8147e-06 63.4328 -3.8147e-06 125 -3.8147e-06C123.429 6.77229 121.456 15.2773 119.776 22.5232Z" fill="white"/>
                                 </svg>
-                                <p>#5156</p>
+                                <p>#${serialNumber}</p>
                             </div>
-                            <p class="card-prize">£50</p>
+                            <p class="card-prize">£${prize}</p>
                         </div>
 
                         <div class="card-message">
                             <span class="card-message-upper">You won</span>
+                            <span class="card-message-below">£${prize}</span>
+                        </div>
+                    </div>`;
+                }else{
+                    cardContainer.innerHTML += `
+                    <div class="card">
+                        <div class="card-inside">
+                            <div class="card-number">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="125" height="38" viewBox="0 0 125 60" fill="none">
+                                    <path d="M119.776 22.5232C117.673 31.5873 109.599 38 100.294 38H24.7061C15.4013 38 7.32575 31.5831 5.22333 22.5191L0 -3.8147e-06C54.7264 -3.8147e-06 63.4328 -3.8147e-06 125 -3.8147e-06C123.429 6.77229 121.456 15.2773 119.776 22.5232Z" fill="white"/>
+                                </svg>
+                                <p>#${serialNumber}</p>
+                            </div>
+                            <p class="card-prize">Try again</p>
+                        </div>
+
+                        <div class="card-message">
+                            <span class="card-message-upper">Try again for up to</span>
                             <span class="card-message-below">£50</span>
                         </div>
                     </div>`;
+                }
+                
             }
             callback();
         }

@@ -2,23 +2,34 @@
   width: 12vw;
   height: 18vw;
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.05));
-  border-radius: 32px;
+  font-size: 0.8vw;
+  border-radius: 1vw;
   background: #FFF;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.4em;
+  padding: 0.5vw;
   overflow: auto;
 }
 @media (max-width: 767px) {
   .card {
     width: 16vw;
     height: 24vw;
+    font-size: 1.4vw;
   }
 }
 .card:hover {
   transform: scale(1.05);
-  filter: drop-shadow();
+}
+.card.win .card-prize {
+  background: linear-gradient(273deg, #ff8477, #a1b2ff, #ff81a0, #c5b3ff, #ff7070);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 4em;
+  font-weight: 700;
+  background-size: 200% 100%;
+  animation: prizeGradient 16s ease infinite;
 }
 
 .card-message {
@@ -27,16 +38,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  line-height: 240%;
+  line-height: 160%;
 }
 .card-message .card-message-upper {
   color: #777777;
-  font-size: 1.2em;
+  font-size: 0.8em;
   font-weight: 400;
 }
 .card-message .card-message-below {
   color: #484848;
-  font-size: 3.4em;
+  font-size: 2em;
   font-weight: 700;
 }
 
@@ -44,7 +55,7 @@
   position: relative;
   width: 100%;
   flex-grow: 3;
-  border-radius: 24px;
+  border-radius: 0.8vw;
   background: #F5F5F5;
   text-align: center;
   display: flex;
@@ -53,14 +64,13 @@
   justify-content: center;
 }
 .card-inside .card-prize {
-  background: linear-gradient(273deg, #ff8477, #a1b2ff, #ff81a0, #c5b3ff, #ff7070);
+  background: gray;
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 8em;
+  font-size: 2em;
   font-weight: 700;
   background-size: 200% 100%;
-  animation: prizeGradient 16s ease infinite;
 }
 @keyframes prizeGradient {
   0% {
@@ -82,14 +92,33 @@
 .card-inside .card-number svg {
   position: absolute;
   fill: #FFF;
-  width: 124px;
-  height: 38px;
+  width: 4vw;
+  height: 1.9vw;
+}
+@media (max-width: 767px) {
+  .card-inside .card-number svg {
+    width: 12vw;
+    height: 3.8vw;
+  }
 }
 .card-inside .card-number p {
   position: absolute;
-  margin-top: 4px;
+  margin-top: 0.2em;
   color: #777777;
-  font-size: 1.2em;
+  font-size: 0.8em;
   font-weight: 500;
   text-align: center;
+}
+@media (max-width: 767px) {
+  .card-inside .card-number p {
+    margin-top: 0.4em;
+  }
+}
+
+.win {
+  z-index: 2;
+}
+
+.win.complete:hover {
+  filter: drop-shadow(0 0 5em rgb(202, 179, 255));
 }/*# sourceMappingURL=card-style.css.map */
