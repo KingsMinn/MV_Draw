@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const bgGrid = document.querySelector('.bg-grid');
-    const bgSpacezoom = document.querySelector('.bg-spacezoom');
+    const bgSpacezoom = document.querySelector('.bg-spacezoom')
 
     bgSpacezoom.pause();
 
@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     let serialNumber = 5100;
+
     //Reveal Animation
     startButton.addEventListener("click", () => {
         
@@ -119,6 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (win){
                     cardContainer.innerHTML += `
                     <div class="card win">
+                    <svg class="card-shape" width="467" height="700" viewBox="0 0 467 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 31.5C0 14.103 14.103 0 31.5 0H435.167C452.564 0 466.667 14.103 466.667 31.5V517.002C451.356 517.181 439 529.647 439 545C439 560.353 451.356 572.819 466.667 572.998V668.5C466.667 685.897 452.564 700 435.167 700H31.5C14.103 700 0 685.897 0 668.5V573C15.464 573 28 560.464 28 545C28 529.536 15.464 517 0 517V31.5Z" fill="white"/>
+                    </svg>
+
                         <div class="card-inside">
                             <div class="card-number">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="125" height="38" viewBox="0 0 125 60" fill="none">
@@ -137,6 +142,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }else{
                     cardContainer.innerHTML += `
                     <div class="card">
+                        <svg class="card-shape" width="467" height="700" viewBox="0 0 467 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 31.5C0 14.103 14.103 0 31.5 0H435.167C452.564 0 466.667 14.103 466.667 31.5V517.002C451.356 517.181 439 529.647 439 545C439 560.353 451.356 572.819 466.667 572.998V668.5C466.667 685.897 452.564 700 435.167 700H31.5C14.103 700 0 685.897 0 668.5V573C15.464 573 28 560.464 28 545C28 529.536 15.464 517 0 517V31.5Z" fill="white"/>
+                        </svg>
                         <div class="card-inside">
                             <div class="card-number">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="125" height="38" viewBox="0 0 125 60" fill="none">
