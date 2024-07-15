@@ -193,6 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             cards.forEach((card, i, array) => {
                 let rect = card.getBoundingClientRect();
+                let row = 5;
+                
+                if ( window.innerWidth < 767 ){ row = 3; }
 
                 const toScroll = card.offsetHeight + 40;
                 const remainScroll = cardContainer.scrollHeight - cardContainer.scrollTop - cardContainer.clientHeight;
@@ -205,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.classList.add('complete');
 
                     //Scroll Automatically
-                    if ((i != 1) && ((i+1) % 5 == 0)){
+                    if ((i != 1) && ((i+1) % row == 0)){
                         if (toScroll < remainScroll){
                             cardContainer.scrollBy({
                                 top: toScroll,
