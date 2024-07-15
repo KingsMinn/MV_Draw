@@ -12,23 +12,36 @@
 }
 @media (max-width: 767px) {
   .card {
-    width: 16vw;
-    height: 24vw;
-    font-size: 1.4vw;
+    width: 27vw;
+    height: 40.5vw;
+    font-size: 2.2vw;
   }
 }
 .card:hover {
   transform: scale(1.05);
 }
 .card.win .card-prize {
-  background: linear-gradient(273deg, #ff8477, #a1b2ff, #ff81a0, #c5b3ff, #ff7070);
+  background: linear-gradient(273deg, #ff4a7e, #2fb6ff, #ff569f, #8a66ff, #ff7088);
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 4em;
   font-weight: 700;
-  background-size: 200% 100%;
-  animation: prizeGradient 16s ease infinite;
+  background-size: 400% 100%;
+  animation: prizeGradient 10s ease infinite;
+}
+.card.win {
+  z-index: 10;
+}
+.card.win.complete {
+  z-index: 0;
+}
+
+.card-light {
+  z-index: 2;
+  top: -6vh;
+  overflow: visible;
+  pointer-events: none;
 }
 
 .card-shape {
@@ -106,7 +119,7 @@
 @media (max-width: 767px) {
   .card-inside .card-number svg {
     width: 12vw;
-    height: 3.8vw;
+    height: 5.7vw;
   }
 }
 .card-inside .card-number p {
@@ -121,10 +134,6 @@
   .card-inside .card-number p {
     margin-top: 0.4em;
   }
-}
-
-.win {
-  z-index: 2;
 }
 
 .win.complete:hover {

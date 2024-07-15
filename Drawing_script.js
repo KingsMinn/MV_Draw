@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const bgGrid = document.querySelector('.bg-grid');
-    const bgSpacezoom = document.querySelector('.bg-spacezoom')
+    const bgSpacezoom = document.querySelector('.bg-spacezoom');
 
     bgSpacezoom.pause();
 
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </svg>
                                 <p>#${serialNumber}</p>
                             </div>
-                            <p class="card-prize">Try again</p>
+                            <p class="card-prize">Try<br>again</p>
                         </div>
 
                         <div class="card-message">
@@ -249,9 +249,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                 }else{
                     //Winning Cards
-                    tl.from(card, timing, {onComplete: () => { setPosition(card); }});
-                    tl.to(card, 0.4, { y: `-=${(window.innerHeight/2) + (rect.height/2) + 40}`, scale: `${1.6 + ((window.innerWidth <= 767) * 2)}`, opacity: 1,})
-                    .to(card, 1.4, {})
+                    const cardLight = document.querySelector('.card-light');
+                    tl.from(card, timing, {onComplete: () => { setPosition(card); cardLight.play();}});
+                    tl.to(card, 0.4, {
+                        y: `-=${(window.innerHeight/2) + (rect.height/2) + 40}`,
+                        scale: `${1.6 + ((window.innerWidth <= 767) * 2)}`,
+                        opacity: 1,
+                        
+                        onComplete: () => {}
+                    })
+                    .to(card, 1.2, {})
                     .to(card, 0.3, {
                         ease: 'superEaseInOut',
                         x: 0, y: 0, scale: 1,
