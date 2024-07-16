@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const remainScroll = cardContainer.scrollHeight - cardContainer.scrollTop - cardContainer.clientHeight;
 
-                if ((i != 0) && (i % 5 == 0)){
+                if ((i != 0) && (i % row == 0)){
                     timing += 0.46;
                 }
 
