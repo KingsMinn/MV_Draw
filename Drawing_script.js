@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderer: 'svg',
         loop: false,
         autoplay: false,
-        path: 'lottie/DrawStart.json'
+        path: 'lottie/DrawStart.json',
     });
 
     let animationLoading = lottie.loadAnimation({
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener('mousedown', () => { startContainer.style.transform = `scale(0.9)`; });
     startButton.addEventListener('mouseup', () => { startContainer.style.transform = `scale(1.1)`; });
 
-    
 
     function setPosition(item){
         let rect = item.getBoundingClientRect();
@@ -94,6 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Reveal Animation
     startButton.addEventListener("click", () => {
+
+        let mobile = window.innerWidth < 767;
+        
+        if ( numberOfCards.value <= 8 + ( mobile * 1 ) ){ cardContainer.style.height = `auto`; }
         
         //Card Settings
         function revealCards(callback){
@@ -195,9 +198,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 let rect = card.getBoundingClientRect();
                 let row = 5;
                 
-                if ( window.innerWidth < 767 ){ row = 3; }
+                if ( mobile ){ row = 3; }
 
-                const toScroll = card.offsetHeight + 40;
+                const toScroll = card.offsetHeight + window.innerWidth/100*2;
+
                 const remainScroll = cardContainer.scrollHeight - cardContainer.scrollTop - cardContainer.clientHeight;
 
                 if ((i != 0) && (i % 5 == 0)){
@@ -208,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.classList.add('complete');
 
                     //Scroll Automatically
-                    if ((i != 1) && ((i+1) % row == 0)){
+                    if ((i != 1) && ((i+1) % row == 0) && (mobile*6 < i+1)){
                         if (toScroll < remainScroll){
                             cardContainer.scrollBy({
                                 top: toScroll,
@@ -256,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     tl.from(card, timing, {onComplete: () => { setPosition(card); cardLight.play();}});
                     tl.to(card, 0.4, {
                         y: `-=${(window.innerHeight/2) + (rect.height/2) + 40}`,
-                        scale: `${1.6 + ((window.innerWidth <= 767) * 2)}`,
+                        scale: `${1.6 + ((window.innerWidth <= 767) * 1.2)}`,
                         opacity: 1,
                         
                         onComplete: () => {}
