@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const textNumberOfCards = document.querySelector('#text-number-of-cards');
     const textProbability = document.querySelector('#text-probability');
 
+    const bgSpacezoom = document.querySelector('.bg-spacezoom');
+    const startLight = document.querySelector('.start-light');
+
     textNumberOfCards.innerHTML = `Number of cards : ${numberOfCards.value}`;
     textProbability.innerHTML = `Probability of winning : ${probability.value}%`;
 
@@ -40,12 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
     animationLoading.addEventListener('complete', () => {
         document.querySelector('.loading-container').style.display = 'none';
         animation.playSegments([0, 100], true);
+
+        bgGrid.style.opacity = 1;
+        startLight.style.transform = `scale(0.6)`;
     }, { once: true });
 
     //Skip Loading
     document.querySelector('.loading-container').addEventListener('click', () => {
         document.querySelector('.loading-container').style.display = 'none';
         animation.playSegments([0, 100], true);
+
+        bgGrid.style.opacity = 1;
+        startLight.style.transform = `scale(0.6)`;
     });
 
     function loopSegment() {
@@ -64,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const startContainer = document.querySelector('.start-container');
     const cardContainer = document.querySelector('.card-container');
 
-    startButton.addEventListener('mouseover', () => { startContainer.style.transform = `scale(1.05)`; });
-    startButton.addEventListener('mouseout', () => { startContainer.style.transform = `scale(1)`; });
+    startButton.addEventListener('mouseover', () => { startContainer.style.transform = `scale(1.05)`; startLight.style.transform = `scale(0.8)`; });
+    startButton.addEventListener('mouseout', () => { startContainer.style.transform = `scale(1)`; startLight.style.transform = `scale(0.6)`; });
     startButton.addEventListener('mousedown', () => { startContainer.style.transform = `scale(0.9)`; });
     startButton.addEventListener('mouseup', () => { startContainer.style.transform = `scale(1.1)`; });
 
@@ -80,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const bgGrid = document.querySelector('.bg-grid');
-    const bgSpacezoom = document.querySelector('.bg-spacezoom');
 
     bgSpacezoom.pause();
 
@@ -95,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener("click", () => {
 
         let mobile = window.innerWidth < 767;
+        startLight.style.opacity = 0;
         
         if ( numberOfCards.value <= 8 + ( mobile * 1 ) ){ cardContainer.style.height = `auto`; }
         
@@ -176,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.style.opacity = 0;
             });
 
-            bgGrid.playbackRate = 10;
+            bgGrid.playbackRate = 15;
             bgSpacezoom.play();
 
             //Lottie Animation
@@ -185,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
             animation.removeEventListener('complete', loopSegment);
 
             animation.addEventListener('complete', function() {
-                bgGrid.playbackRate = 1;
+                if ( bgGrid.playbackRate == 15 ) { bgGrid.playbackRate = 10; }
                 document.querySelector('.start-container').style.display = 'none';
                 animation.removeEventListener('complete', loopSegment);
             }, { once: true });
@@ -231,6 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         cardContainer.style.pointerEvents = 'all';
                         document.querySelector('.button-container').classList.add('reveal-done');
                         bgSpacezoom.classList.add('done');
+                        bgGrid.playbackRate = 1;
                     }
                 }
 

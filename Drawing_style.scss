@@ -47,9 +47,21 @@ body{
     top: 0;
     left: 0;
     z-index: 10;
-    overflow: hidden;
+    overflow: visible;
 
     transition: all 0.2s ease;
+}
+
+.start-light{
+    overflow: visible;
+    transform: scale(0);
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.bg-grid{
+    transition: all 0.5s ease;
+    opacity: 0;
 }
 
 .start-button{
