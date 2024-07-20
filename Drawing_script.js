@@ -286,7 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-
         revealCards(spreadCards);
     });
 });
