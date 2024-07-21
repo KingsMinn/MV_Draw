@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const textProbability = document.querySelector('#text-probability');
 
     const bgSpacezoom = document.querySelector('.bg-spacezoom');
-    const startLight = document.querySelector('.start-light');
 
     textNumberOfCards.innerHTML = `Number of cards : ${numberOfCards.value}`;
     textProbability.innerHTML = `Probability of winning : ${probability.value}%`;
@@ -32,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         path: 'lottie/DrawStart.json',
     });
 
+    animation.resize();
+    
     let animationLoading = lottie.loadAnimation({
         container: document.querySelector('.loading'),
         renderer: 'svg',
@@ -45,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animation.playSegments([0, 100], true);
 
         bgGrid.style.opacity = 1;
-        startLight.style.transform = `scale(0.6)`;
     }, { once: true });
 
     //Skip Loading
@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animation.playSegments([0, 100], true);
 
         bgGrid.style.opacity = 1;
-        startLight.style.transform = `scale(0.6)`;
     });
 
     function loopSegment() {
@@ -73,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const startContainer = document.querySelector('.start-container');
     const cardContainer = document.querySelector('.card-container');
 
-    startButton.addEventListener('mouseover', () => { startContainer.style.transform = `scale(1.05)`; startLight.style.transform = `scale(0.8)`; });
-    startButton.addEventListener('mouseout', () => { startContainer.style.transform = `scale(1)`; startLight.style.transform = `scale(0.6)`; });
+    startButton.addEventListener('mouseover', () => { startContainer.style.transform = `scale(1.05)`; });
+    startButton.addEventListener('mouseout', () => { startContainer.style.transform = `scale(1)`; });
     startButton.addEventListener('mousedown', () => { startContainer.style.transform = `scale(0.9)`; });
     startButton.addEventListener('mouseup', () => { startContainer.style.transform = `scale(1.1)`; });
 
@@ -103,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener("click", () => {
 
         let mobile = window.innerWidth < 767;
-        startLight.style.opacity = 0;
         
         if ( numberOfCards.value <= 8 + ( mobile * 1 ) ){ cardContainer.style.height = `auto`; }
         
