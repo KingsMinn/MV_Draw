@@ -31,8 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         path: 'lottie/DrawStart.json',
     });
 
-    animation.resize();
-    
     let animationLoading = lottie.loadAnimation({
         container: document.querySelector('.loading'),
         renderer: 'svg',
@@ -41,11 +39,26 @@ document.addEventListener("DOMContentLoaded", () => {
         path: 'lottie/Loading.json'
     });
 
+    let animationOutro = lottie.loadAnimation({
+        container: document.querySelector('.loading-outro'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'lottie/Outro.json',
+    });
+
     animationLoading.addEventListener('complete', () => {
+        animationOutro.playSegments(true);
+        document.querySelector('.loading-outro').classList.add('done');
         document.querySelector('.loading-container').style.display = 'none';
-        animation.playSegments([0, 100], true);
 
         bgGrid.style.opacity = 1;
+    }, { once: true });
+
+    animationOutro.addEventListener('complete', () => {
+        animation.playSegments([0, 100], true);
+        document.querySelector('.start-container').style.opacity = 1;
+
     }, { once: true });
 
     //Skip Loading
